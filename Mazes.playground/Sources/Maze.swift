@@ -54,7 +54,7 @@ public class Maze {
     
     public init() {
         // Initialize the maze graph. At this point, the graph has no walls.
-        graph = GKGridGraph(fromGridStartingAt: int2(0, 0), width: Int32(Maze.dimensions), height: Int32(Maze.dimensions), diagonalsAllowed: false)
+        graph = GKGridGraph(fromGridStartingAt: SIMD2<Int32>(0, 0), width: Int32(Maze.dimensions), height: Int32(Maze.dimensions), diagonalsAllowed: false)
         
         /* 
             Define the maze's start and end nodes.
@@ -63,8 +63,8 @@ public class Maze {
             coordinate, otherwise they may not remain on the maze graph after 
             the maze walls are removed.
         */
-        startNode = graph.node(atGridPosition: int2(0, Int32(Maze.dimensions - 1)))!
-        endNode   = graph.node(atGridPosition: int2(Int32(Maze.dimensions - 1), 0))!
+        startNode = graph.node(atGridPosition: SIMD2<Int32>(0, Int32(Maze.dimensions - 1)))!
+        endNode   = graph.node(atGridPosition: SIMD2<Int32>(Int32(Maze.dimensions - 1), 0))!
         
         /*
             Create a MazeBuilder to generate a random set of walls, then remove 

@@ -191,7 +191,7 @@ public class MazeBuilder {
         let y = node.gridPosition.y
         
         // Get the location of node in the given direction.
-        let nodeInDirectionPosition = int2(Int32(x) + Int32(dx), Int32(y) + Int32(dy))
+        let nodeInDirectionPosition = SIMD2<Int32>(Int32(x) + Int32(dx), Int32(y) + Int32(dy))
         let nodeInDirection = maze.graph.node(atGridPosition: nodeInDirectionPosition)!
         
         // Add the node in the direction to the stack, and mark it as visited.
@@ -199,7 +199,7 @@ public class MazeBuilder {
         visitedNodes.append(nodeInDirection)
         
         // Remove the wall between this node and the current node.
-        let wallNodePosition = int2(Int32(x) + Int32(dx) / 2, Int32(y) + Int32(dy) / 2)
+        let wallNodePosition = SIMD2<Int32>(Int32(x) + Int32(dx) / 2, Int32(y) + Int32(dy) / 2)
         let wallNode = maze.graph.node(atGridPosition: wallNodePosition)!
         let wallNodeIndex = wallNodes.firstIndex(of: wallNode)!
         wallNodes.remove(at: wallNodeIndex)
@@ -229,7 +229,7 @@ public class MazeBuilder {
     /// This method checks if a node is unvisited.
     func nodeIsUnvisitedAtCoordinates(x: Int32, y: Int32) -> Bool {
         // Check if a node with the given position exists.
-        let nodePosition = int2(x, y)
+        let nodePosition = SIMD2<Int32>(x, y)
         guard let node = maze.graph.node(atGridPosition: nodePosition) else {
             return false
         }
